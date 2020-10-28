@@ -6,21 +6,19 @@
 public class MoveBehaviour : StateMachineBehaviour
 {
     [SerializeField] private AnimationClip colorChange;
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject prefabCube;
 
     private GameObject _cube;
-    private Vector3 _currentRot;
-    
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         AnimBullet();
-        _cube = Instantiate(prefab, prefab.transform.position, Quaternion.identity);
-        _currentRot = new Vector3(0f, 0f, 100f * Time.deltaTime);
+        _cube = Instantiate(prefabCube, prefabCube.transform.position, Quaternion.identity);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _cube.transform.Rotate(_currentRot);
+        _cube.transform.Rotate(new Vector3(0f, 0f, 100f * Time.deltaTime));
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
